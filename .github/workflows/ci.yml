@@ -26,9 +26,11 @@ jobs:
           python -m venv venv
           source venv/bin/activate
           pip install -r requirements.txt
-          pip install pytest
+          pip install pytest pytest-cov
 
-      - name: Run tests
+      - name: Run tests with 100% coverage enforcement
         run: |
           source venv/bin/activate
-          pytest --maxfail=1 --disable-warnings -q
+          pytest --cov=calculator tests/ --cov-fail-under=100
+
+          
